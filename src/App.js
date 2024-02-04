@@ -1,13 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import Crisp from './components/Crisp';
+import AuthForm from "./pages/Auth/AuthForm";
 
 function App() {
   return (
-    <h1 className="text-10xl font-bold underline">
-      Hello world!
-    </h1>
-  )
-
+    <>
+    <AuthForm/>
+    <Crisp/>
+    </>
+  );
 }
 
 export default App;

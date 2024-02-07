@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
-import './styles.css'; // Import your stylesheet
+import "./styles.css"; // Import your stylesheet
 
 const AuthForm = () => {
   const [isSignIn, setIsSignIn] = useState(true);
+
+  const [usernameSignUp, setUsernameSignUp] = useState();
+  const [emailSignUp, setEmailSignUp] = useState();
+  const [passwordSignUp, setPasswordSignUp] = useState();
+
+  const [emailSignIn, setEmailSignIn] = useState();
+  const [passwordSignIn, setPasswordSignIn] = useState();
 
   useEffect(() => {
     // Set initial class after a delay
@@ -17,8 +24,15 @@ const AuthForm = () => {
     setIsSignIn((prev) => !prev);
   };
 
+  const handleSignup = async (e) => {};
+
+  const handleSignin = async (e) => {};
+
   return (
-    <div id="container" className={`container ${isSignIn ? 'sign-in' : 'sign-up'}`}>
+    <div
+      id="container"
+      className={`container ${isSignIn ? "sign-in" : "sign-up"}`}
+    >
       {/* FORM SECTION */}
       <div className="row">
         {/* SIGN UP */}
@@ -26,25 +40,42 @@ const AuthForm = () => {
           <div className="form-wrapper align-items-center">
             <div className="form sign-up">
               <div className="input-group">
-                <i className='bx bxs-user'></i>
-                <input type="text" placeholder="Username" />
+                <i className="bx bxs-user"></i>
+                <input
+                  type="text"
+                  placeholder="Username"
+                  value={usernameSignUp}
+                  onChange={(e) => setUsernameSignUp(e.target.value)}
+                />
               </div>
               <div className="input-group">
-                <i className='bx bx-mail-send'></i>
-                <input type="email" placeholder="Email" />
+                <i className="bx bx-mail-send"></i>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={emailSignUp}
+                  onChange={(e) => setEmailSignUp(e.target.value)}
+                />
               </div>
               <div className="input-group">
-                <i className='bx bxs-lock-alt'></i>
-                <input type="password" placeholder="Password" />
+                <i className="bx bxs-lock-alt"></i>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={passwordSignUp}
+                  onChange={(e) => setPasswordSignUp(e.target.value)}
+                />
               </div>
-              <div className="input-group">
-                <i className='bx bxs-lock-alt'></i>
+              {/* <div className="input-group">
+                <i className="bx bxs-lock-alt"></i>
                 <input type="password" placeholder="Confirm password" />
-              </div>
-              <button>Sign up</button>
+              </div> */}
+              <button onClick={handleSignup}>Sign up</button>
               <p>
                 <span>Already have an account?</span>
-                <b onClick={toggle} className="pointer">Sign in here</b>
+                <b onClick={toggle} className="pointer">
+                  Sign in here
+                </b>
               </p>
             </div>
           </div>
@@ -55,20 +86,32 @@ const AuthForm = () => {
           <div className="form-wrapper align-items-center">
             <div className="form sign-in">
               <div className="input-group">
-                <i className='bx bxs-user'></i>
-                <input type="text" placeholder="Username" />
+                <i className="bx bxs-user"></i>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={emailSignIn}
+                  onChange={(e) => setEmailSignIn(e.target.value)}
+                />
               </div>
               <div className="input-group">
-                <i className='bx bxs-lock-alt'></i>
-                <input type="password" placeholder="Password" />
+                <i className="bx bxs-lock-alt"></i>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={passwordSignIn}
+                  onChange={(e) => setPasswordSignIn(e.target.value)}
+                />
               </div>
-              <button>Sign in</button>
+              <button onClick={handleSignin}>Sign in</button>
               <p>
                 <b>Forgot password?</b>
               </p>
               <p>
                 <span>Don't have an account?</span>
-                <b onClick={toggle} className="pointer">Sign up here</b>
+                <b onClick={toggle} className="pointer">
+                  Sign up here
+                </b>
               </p>
             </div>
           </div>
@@ -100,15 +143,9 @@ const AuthForm = () => {
             <h2>Join with us</h2>
           </div>
         </div>
-
       </div>
-  
     </div>
   );
 };
 
 export default AuthForm;
-
-
-
-

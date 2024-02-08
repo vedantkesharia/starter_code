@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./styles.css"; // Import your stylesheet
 
+import { useSignup } from "../../hooks/useSignup";
+import { useLogin } from "../../hooks/useLogin";
+
 const AuthForm = () => {
   const [isSignIn, setIsSignIn] = useState(true);
 
@@ -8,8 +11,12 @@ const AuthForm = () => {
   const [emailSignUp, setEmailSignUp] = useState();
   const [passwordSignUp, setPasswordSignUp] = useState();
 
+  const { signup, error, isLoading } = useSignup();
+
   const [emailSignIn, setEmailSignIn] = useState();
   const [passwordSignIn, setPasswordSignIn] = useState();
+
+  const { login, errorLogin, isLoadingLogin } = useLogin();
 
   useEffect(() => {
     // Set initial class after a delay
@@ -24,9 +31,13 @@ const AuthForm = () => {
     setIsSignIn((prev) => !prev);
   };
 
-  const handleSignup = async (e) => {};
+  const handleSignup = async (e) => {
+    await signup(emailSignUp, passwordSignUp, usernameSignUp);
+  };
 
-  const handleSignin = async (e) => {};
+  const handleSignin = async (e) => {
+    await login(emailSignIn, passwordSignIn);
+  };
 
   return (
     <div
@@ -71,12 +82,14 @@ const AuthForm = () => {
                 <input type="password" placeholder="Confirm password" />
               </div> */}
               <button onClick={handleSignup}>Sign up</button>
+
               <p>
                 <span>Already have an account?</span>
-                <b onClick={toggle} className="pointer">
+                <b onClick={toggle} className="pointer" disabled={isLoading}>
                   Sign in here
                 </b>
               </p>
+              {error && <div className="border border-1 text-sm ">{error}</div>}
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ import {useLogout} from "../hooks/useLogout"
 
     return (
         <>
-        <button onClick={handleLogout} className="border border-2">Logout</button>
+        <button onClick={handleLogout} className="border ">Logout</button>
         </>
     )
 }

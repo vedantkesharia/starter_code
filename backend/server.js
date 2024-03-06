@@ -1,13 +1,14 @@
-const express = require("express");
-const mongoose = require("mongoose");
-require('dotenv').config()
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
 // Middleware
 app.use(express.json()); // Body parser middleware
 
-const userRoutes = require("./routes/user");
+import userRoutes from "./routes/user.js";
 
 app.use("/api/user", userRoutes);
 
@@ -18,7 +19,7 @@ app.get("/", (req, res) => {
 
 // Connect to MongoDB
 mongoose
-  .connect( process.env.MONGO_URI , {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
